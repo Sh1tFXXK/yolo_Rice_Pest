@@ -1,0 +1,26 @@
+# Python 环境
+venv/
+env/
+Python310/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 深度学习 / 模型文件
+*.pt
+*.pth
+*.onnx
+*.weights
+*.bin
+
+# 系统/办公临时文件
+~$*.doc*
+~$*.xls*
+.DS_Store"Python310/" 
+"__pycache__/" 
+"*.pyc" 
+"*.pyd" 
+"*.dll" 
+"venv/" 
+".venv/" 
