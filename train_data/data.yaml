@@ -1,0 +1,12 @@
+names:
+- brown-planthopper
+- green-leafhopper
+- leaf-folder
+- rice-bug
+- stem-borer
+- whorl-maggot
+nc: 6
+path: D:\project\python\01Finished\yolo_Rice_Pest\train_data
+test: ../test/images
+train: ../train/images
+val: ../valid/images

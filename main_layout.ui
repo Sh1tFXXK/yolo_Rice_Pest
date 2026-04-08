@@ -1,0 +1,2802 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1441</width>
+    <height>873</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>基于YOLO的跌倒检测系统</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+    background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 1,
+                                stop: 0 #0a0e27, stop: 0.5 #16213e, stop: 1 #0f3460);
+    color: #e8f1ff;
+    font-family: &quot;Segoe UI&quot;, &quot;Microsoft YaHei&quot;, sans-serif;
+    font-size: 15px;
+}
+QPushButton {
+    border-radius: 10px;
+    padding: 14px 22px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+}
+QPushButton:hover {
+}
+QPushButton:pressed {
+}
+QSlider::groove:horizontal {
+    height: 8px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                               stop:0 #2a2f3c, stop:1 #3a3f4c);
+    border-radius: 4px;
+}
+QSlider::handle:horizontal {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 #58a6ff, stop:1 #1f6feb);
+    width: 24px;
+    height: 24px;
+    margin: -8px 0;
+    border-radius: 12px;
+    border: 2px solid #ffffff;
+}
+QSlider::handle:horizontal:hover {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 #79c0ff, stop:1 #388bfd);
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="spacing">
+     <number>10</number>
+    </property>
+    <property name="leftMargin">
+     <number>10</number>
+    </property>
+    <property name="topMargin">
+     <number>10</number>
+    </property>
+    <property name="rightMargin">
+     <number>10</number>
+    </property>
+    <property name="bottomMargin">
+     <number>10</number>
+    </property>
+    <item>
+     <widget class="QWidget" name="collapse_widget2" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>72</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>72</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                               stop:0 rgba(22, 33, 62, 0.95), 
+                               stop:1 rgba(15, 52, 96, 0.95));
+    border-radius: 18px; 
+</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_10">
+       <property name="spacing">
+        <number>15</number>
+       </property>
+       <property name="leftMargin">
+        <number>15</number>
+       </property>
+       <property name="topMargin">
+        <number>20</number>
+       </property>
+       <property name="rightMargin">
+        <number>15</number>
+       </property>
+       <property name="bottomMargin">
+        <number>20</number>
+       </property>
+       <item>
+        <layout class="QHBoxLayout" name="titleLayout_2">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QPushButton" name="toggle_btn_2">
+           <property name="maximumSize">
+            <size>
+             <width>32</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>-1</pointsize>
+             <weight>75</weight>
+             <italic>false</italic>
+             <bold>true</bold>
+             <underline>true</underline>
+            </font>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 #4facfe, stop:0.5 #00f2fe, stop:1 #4facfe);
+    color: white;
+    border: none;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 #00f2fe, stop:0.5 #4facfe, stop:1 #00f2fe);
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>icon/open.png</normaloff>icon/open.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>16</width>
+             <height>16</height>
+            </size>
+           </property>
+           <property name="checkable">
+            <bool>false</bool>
+           </property>
+           <property name="autoRepeat">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnUser2">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+   background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 rgba(102, 126, 234, 0.9), 
+                               stop:0.5 rgba(118, 75, 162, 0.9), 
+                               stop:1 rgba(102, 126, 234, 0.9));
+    color: white;
+    border: none;
+    text-align: center;
+    padding: 14px 18px;
+    border-left: 4px solid #667eea;
+    border-radius: 12px;
+    font-weight: 600;
+}
+QPushButton:hover {
+   background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 rgba(118, 75, 162, 0.9), 
+                               stop:0.5 rgba(102, 126, 234, 0.9), 
+                               stop:1 rgba(118, 75, 162, 0.9));
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>icon/user.png</normaloff>icon/user.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>40</width>
+           <height>40</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnImage_2">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+   background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 rgba(240, 147, 251, 0.9), 
+                               stop:0.5 rgba(245, 87, 108, 0.9), 
+                               stop:1 rgba(240, 147, 251, 0.9));
+    color: white;
+    border: none;
+    text-align: center;
+    padding: 14px 18px;
+    border-left: 4px solid #f093fb;
+    border-radius: 12px;
+    font-weight: 600;
+}
+QPushButton:hover {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 rgba(245, 87, 108, 0.9), 
+                               stop:0.5 rgba(240, 147, 251, 0.9), 
+                               stop:1 rgba(245, 87, 108, 0.9));
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>icon/image.png</normaloff>icon/image.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>40</width>
+           <height>40</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnVideo_2">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 rgba(79, 172, 254, 0.9), 
+                               stop:0.5 rgba(0, 242, 254, 0.9), 
+                               stop:1 rgba(79, 172, 254, 0.9));
+    color: white;
+    border: none;
+    text-align: center;
+    padding: 14px 18px;
+    border-left: 4px solid #4facfe;
+    border-radius: 12px;
+    font-weight: 600;
+}
+QPushButton:hover {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 rgba(0, 242, 254, 0.9), 
+                               stop:0.5 rgba(79, 172, 254, 0.9), 
+                               stop:1 rgba(0, 242, 254, 0.9));
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>icon/video.png</normaloff>icon/video.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>40</width>
+           <height>40</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnFolder_2">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 rgba(255, 216, 155, 0.9), 
+                               stop:0.5 rgba(255, 154, 86, 0.9), 
+                               stop:1 rgba(255, 216, 155, 0.9));
+    color: white;
+    border: none;
+    text-align: center;
+    padding: 14px 18px;
+    border-left: 4px solid #ffd89b;
+    border-radius: 12px;
+    font-weight: 600;
+}
+QPushButton:hover {
+   background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 rgba(255, 154, 86, 0.9), 
+                               stop:0.5 rgba(255, 216, 155, 0.9), 
+                               stop:1 rgba(255, 154, 86, 0.9));
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>icon/folder.png</normaloff>icon/folder.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>40</width>
+           <height>40</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="drawer_buttons_2">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+   background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 rgba(168, 237, 234, 0.9), 
+                               stop:0.5 rgba(254, 214, 227, 0.9), 
+                               stop:1 rgba(168, 237, 234, 0.9));
+    color: white;
+    border: none;
+    text-align: center;
+    padding: 14px 18px;
+    border-left: 4px solid #a8edea;
+    border-radius: 12px;
+    font-weight: 600;
+}
+QPushButton:hover {
+   background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 rgba(254, 214, 227, 0.9), 
+                               stop:0.5 rgba(168, 237, 234, 0.9), 
+                               stop:1 rgba(254, 214, 227, 0.9));
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>icon/camera.png</normaloff>icon/camera.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>40</width>
+           <height>40</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnModel_2">
+         <property name="minimumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>50</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 rgba(250, 112, 154, 0.9), 
+                               stop:0.5 rgba(254, 225, 64, 0.9), 
+                               stop:1 rgba(250, 112, 154, 0.9));
+    color: white;
+    border: none;
+    text-align: center;
+    padding: 14px 18px;
+    border-left: 4px solid #fa709a;
+    border-radius: 12px;
+    font-weight: 600;
+}
+QPushButton:hover {
+   background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 rgba(254, 225, 64, 0.9), 
+                               stop:0.5 rgba(250, 112, 154, 0.9), 
+                               stop:1 rgba(254, 225, 64, 0.9));
+}</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>icon/robot.png</normaloff>icon/robot.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>40</width>
+           <height>40</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>400</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="collapse_widget" native="true">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>250</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>250</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                               stop:0 rgba(22, 33, 62, 0.95), 
+                               stop:1 rgba(15, 52, 96, 0.95));
+    border-radius: 18px; 
+</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="spacing">
+        <number>15</number>
+       </property>
+       <property name="leftMargin">
+        <number>15</number>
+       </property>
+       <property name="topMargin">
+        <number>20</number>
+       </property>
+       <property name="rightMargin">
+        <number>15</number>
+       </property>
+       <property name="bottomMargin">
+        <number>20</number>
+       </property>
+       <item>
+        <layout class="QHBoxLayout" name="titleLayout">
+         <item>
+          <widget class="QLabel" name="title_label">
+           <property name="styleSheet">
+            <string notr="true">    font-size: 28px; 
+    font-weight: 800; 
+    color: #4facfe;
+    text-shadow: 0 0 20px rgba(79, 172, 254, 0.8);</string>
+           </property>
+           <property name="text">
+            <string>跌倒检测</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_title">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="toggle_btn">
+           <property name="maximumSize">
+            <size>
+             <width>32</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>-1</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 #4facfe, stop:0.5 #00f2fe, stop:1 #4facfe);
+    color: white;
+    border: none;
+    border-radius: 16px;
+    font-size: 18px;
+    font-weight: bold;
+}
+QPushButton:hover {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 #00f2fe, stop:0.5 #4facfe, stop:1 #00f2fe);
+}</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>icon/close.png</normaloff>icon/close.png</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>16</width>
+             <height>16</height>
+            </size>
+           </property>
+           <property name="checkable">
+            <bool>false</bool>
+           </property>
+           <property name="default">
+            <bool>false</bool>
+           </property>
+           <property name="flat">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnUser">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+   background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 rgba(102, 126, 234, 0.9), 
+                               stop:0.5 rgba(118, 75, 162, 0.9), 
+                               stop:1 rgba(102, 126, 234, 0.9));
+    color: white;
+    border: none;
+    text-align: left;
+    padding: 14px 18px;
+    border-left: 4px solid #667eea;
+    border-radius: 12px;
+    font-weight: 600;
+}
+QPushButton:hover {
+   background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 rgba(118, 75, 162, 0.9), 
+                               stop:0.5 rgba(102, 126, 234, 0.9), 
+                               stop:1 rgba(118, 75, 162, 0.9));
+}
+QPushButton[iconMode=&quot;true&quot;] {
+    padding: 12px 5px;
+    text-align: center;
+    min-width: 60px;
+    max-width: 60px;
+}
+QPushButton[iconMode=&quot;true&quot;]:hover::after {
+    content: attr(tooltip);
+    position: absolute;
+    left: 70px;
+    top: 50%;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 1000;
+}</string>
+         </property>
+         <property name="text">
+          <string>个人中心</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>icon/user.png</normaloff>icon/user.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnImage">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+   background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 rgba(240, 147, 251, 0.9), 
+                               stop:0.5 rgba(245, 87, 108, 0.9), 
+                               stop:1 rgba(240, 147, 251, 0.9));
+    color: white;
+    border: none;
+    text-align: left;
+    padding: 14px 18px;
+    border-left: 4px solid #f093fb;
+    border-radius: 12px;
+    font-weight: 600;
+}
+QPushButton:hover {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 rgba(245, 87, 108, 0.9), 
+                               stop:0.5 rgba(240, 147, 251, 0.9), 
+                               stop:1 rgba(245, 87, 108, 0.9));
+}
+QPushButton[iconMode=&quot;true&quot;] {
+    padding: 12px 5px;
+    text-align: center;
+    min-width: 60px;
+    max-width: 60px;
+}
+QPushButton[iconMode=&quot;true&quot;]:hover::after {
+    content: attr(tooltip);
+    position: absolute;
+    left: 70px;
+    top: 50%;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 1000;
+}</string>
+         </property>
+         <property name="text">
+          <string> 图片选择</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>icon/image.png</normaloff>icon/image.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnVideo">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+   background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 rgba(79, 172, 254, 0.9), 
+                               stop:0.5 rgba(0, 242, 254, 0.9), 
+                               stop:1 rgba(79, 172, 254, 0.9));
+    color: white;
+    border: none;
+    text-align: left;
+    padding: 14px 18px;
+    border-left: 4px solid #4facfe;
+    border-radius: 12px;
+    font-weight: 600;
+}
+QPushButton:hover {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 rgba(0, 242, 254, 0.9), 
+                               stop:0.5 rgba(79, 172, 254, 0.9), 
+                               stop:1 rgba(0, 242, 254, 0.9));
+}
+QPushButton[iconMode=&quot;true&quot;] {
+    padding: 12px 5px;
+    text-align: center;
+    min-width: 60px;
+    max-width: 60px;
+}
+QPushButton[iconMode=&quot;true&quot;]:hover::after {
+    content: attr(tooltip);
+    position: absolute;
+    left: 70px;
+    top: 50%;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 1000;
+}</string>
+         </property>
+         <property name="text">
+          <string>视频选择</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>icon/video.png</normaloff>icon/video.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnFolder">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 rgba(255, 216, 155, 0.9), 
+                               stop:0.5 rgba(255, 154, 86, 0.9), 
+                               stop:1 rgba(255, 216, 155, 0.9));
+    color: white;
+    border: none;
+    text-align: left;
+    padding: 14px 18px;
+    border-left: 4px solid #ffd89b;
+    border-radius: 12px;
+    font-weight: 600;
+}
+QPushButton:hover {
+   background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 rgba(255, 154, 86, 0.9), 
+                               stop:0.5 rgba(255, 216, 155, 0.9), 
+                               stop:1 rgba(255, 154, 86, 0.9));
+}
+QPushButton[iconMode=&quot;true&quot;] {
+    padding: 12px 5px;
+    text-align: center;
+    min-width: 60px;
+    max-width: 60px;
+}
+QPushButton[iconMode=&quot;true&quot;]:hover::after {
+    content: attr(tooltip);
+    position: absolute;
+    left: 70px;
+    top: 50%;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 1000;
+}</string>
+         </property>
+         <property name="text">
+          <string>文件夹选择</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>icon/folder.png</normaloff>icon/folder.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="drawer_buttons">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 rgba(168, 237, 234, 0.9), 
+                               stop:0.5 rgba(254, 214, 227, 0.9), 
+                               stop:1 rgba(168, 237, 234, 0.9));
+    color: white;
+    border: none;
+    text-align: left;
+    padding: 14px 18px;
+    border-left: 4px solid #a8edea;
+    border-radius: 12px;
+    font-weight: 600;
+}
+QPushButton:hover {
+   background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 rgba(254, 214, 227, 0.9), 
+                               stop:0.5 rgba(168, 237, 234, 0.9), 
+                               stop:1 rgba(254, 214, 227, 0.9));
+}
+QPushButton[iconMode=&quot;true&quot;] {
+    padding: 12px 5px;
+    text-align: center;
+    min-width: 60px;
+    max-width: 60px;
+}
+QPushButton[iconMode=&quot;true&quot;]:hover::after {
+    content: attr(tooltip);
+    position: absolute;
+    left: 70px;
+    top: 50%;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 1000;
+}</string>
+         </property>
+         <property name="text">
+          <string>摄像头</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>icon/camera.png</normaloff>icon/camera.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="btnModel">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>50</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 rgba(250, 112, 154, 0.9), 
+                               stop:0.5 rgba(254, 225, 64, 0.9), 
+                               stop:1 rgba(250, 112, 154, 0.9));
+    color: white;
+    border: none;
+    text-align: left;
+    padding: 14px 18px;
+    border-left: 4px solid #fa709a;
+    border-radius: 12px;
+    font-weight: 600;
+}
+QPushButton:hover {
+   background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 rgba(254, 225, 64, 0.9), 
+                               stop:0.5 rgba(250, 112, 154, 0.9), 
+                               stop:1 rgba(254, 225, 64, 0.9));
+}
+QPushButton[iconMode=&quot;true&quot;] {
+    padding: 12px 5px;
+    text-align: center;
+    min-width: 60px;
+    max-width: 60px;
+}
+QPushButton[iconMode=&quot;true&quot;]:hover::after {
+    content: attr(tooltip);
+    position: absolute;
+    left: 70px;
+    top: 50%;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 1000;
+}</string>
+         </property>
+         <property name="text">
+          <string>模型选择</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>icon/robot.png</normaloff>icon/robot.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+      <zorder>btnImage</zorder>
+      <zorder>btnVideo</zorder>
+      <zorder>drawer_buttons</zorder>
+      <zorder>btnModel</zorder>
+      <zorder>btnFolder</zorder>
+      <zorder>btnUser</zorder>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="centerWidget" native="true">
+      <property name="styleSheet">
+       <string notr="true">background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                               stop:0 rgba(22, 33, 62, 0.95), 
+                               stop:1 rgba(15, 52, 96, 0.95));
+    border-radius: 18px; 
+</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0,0,0">
+       <property name="spacing">
+        <number>15</number>
+       </property>
+       <property name="leftMargin">
+        <number>15</number>
+       </property>
+       <property name="topMargin">
+        <number>20</number>
+       </property>
+       <property name="rightMargin">
+        <number>15</number>
+       </property>
+       <property name="bottomMargin">
+        <number>20</number>
+       </property>
+       <item>
+        <layout class="QHBoxLayout" name="topControlLayout">
+         <item>
+          <widget class="QWidget" name="confWidget" native="true">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>42</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>42</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="conf_label">
+              <property name="styleSheet">
+               <string notr="true">font-size: 14px; 
+background-color: rgba(255, 255, 255, 0);
+    font-weight: 600; 
+    color: #4facfe;</string>
+              </property>
+              <property name="text">
+               <string>置信度 (Conf): 0.5</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSlider" name="conf_slider">
+              <property name="styleSheet">
+               <string notr="true">QSlider::groove:horizontal {
+    height: 10px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                               stop:0 #1a2332, stop:0.5 #2d3e5f, stop:1 #1a2332);
+    border-radius: 5px;
+    border: 1px solid rgba(79, 172, 254, 0.2);
+}
+
+QSlider::handle:horizontal {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 #4facfe, stop:0.5 #00f2fe, stop:1 #4facfe);
+    width: 26px;
+    height: 26px;
+    margin: -9px 0;
+    border-radius: 13px;
+    border: 3px solid #0f3460;
+}
+
+QSlider::handle:horizontal:hover {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 #00f2fe, stop:0.5 #4facfe, stop:1 #00f2fe);
+}</string>
+              </property>
+              <property name="minimum">
+               <number>0</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+              <property name="value">
+               <number>50</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>30</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QWidget" name="iouWidget" native="true">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>42</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>42</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgba(255, 255, 255, 0);</string>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_5">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="iou_label">
+              <property name="styleSheet">
+               <string notr="true">font-size: 14px; 
+    font-weight: 600; 
+    color: #4facfe;</string>
+              </property>
+              <property name="text">
+               <string>交并比 (IoU): 0.5</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QSlider" name="iou_slider">
+              <property name="styleSheet">
+               <string notr="true">QSlider::groove:horizontal {
+    height: 10px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                               stop:0 #1a2332, stop:0.5 #2d3e5f, stop:1 #1a2332);
+    border-radius: 5px;
+    border: 1px solid rgba(79, 172, 254, 0.2);
+}
+
+QSlider::handle:horizontal {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 #4facfe, stop:0.5 #00f2fe, stop:1 #4facfe);
+    width: 26px;
+    height: 26px;
+    margin: -9px 0;
+    border-radius: 13px;
+    border: 3px solid #0f3460;
+}
+
+QSlider::handle:horizontal:hover {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 #00f2fe, stop:0.5 #4facfe, stop:1 #00f2fe);
+}</string>
+              </property>
+              <property name="minimum">
+               <number>0</number>
+              </property>
+              <property name="maximum">
+               <number>100</number>
+              </property>
+              <property name="value">
+               <number>50</number>
+              </property>
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="statusLayout">
+         <item>
+          <widget class="QLabel" name="time_label">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>33</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>33</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font-size: 14px; 
+    color: #b0b8c0; 
+    font-weight: 500;
+    padding: 6px 12px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                               stop:0 rgba(79, 172, 254, 0.15), 
+                               stop:1 rgba(0, 242, 254, 0.15));
+    border: 1px solid rgba(79, 172, 254, 0.3);
+    border-radius: 8px;</string>
+           </property>
+           <property name="text">
+            <string>⏱ 检测耗时: 0.00s</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="count_label">
+           <property name="minimumSize">
+            <size>
+             <width>0</width>
+             <height>33</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>33</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font-size: 14px; 
+    color: #b0b8c0;
+    font-weight: 500;
+    padding: 6px 12px;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                               stop:0 rgba(168, 237, 234, 0.15), 
+                               stop:1 rgba(254, 214, 227, 0.15));
+    border: 1px solid rgba(168, 237, 234, 0.3);
+    border-radius: 8px;</string>
+           </property>
+           <property name="text">
+            <string>🎯 检测目标: 0个</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QLabel" name="image_label">
+         <property name="minimumSize">
+          <size>
+           <width>419</width>
+           <height>100</height>
+          </size>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                               stop:0 rgba(10, 14, 39, 0.8), 
+                               stop:1 rgba(15, 52, 96, 0.8));
+    border: 2px solid rgba(79, 172, 254, 0.4);
+    border-radius: 12px;
+	font-size: 16px;
+    font-weight: bold;
+	color: rgb(255, 255, 255);
+}</string>
+         </property>
+         <property name="text">
+          <string>dafasd</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWebEngineView" name="image_bg" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>419</width>
+           <height>100</height>
+          </size>
+         </property>
+         <property name="autoFillBackground">
+          <bool>false</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QLabel {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                               stop:0 rgba(10, 14, 39, 0.8), 
+                               stop:1 rgba(15, 52, 96, 0.8));
+    border: 2px solid rgba(79, 172, 254, 0.4);
+    border-radius: 12px;
+	color: rgb(255, 255, 255);
+}</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTableWidget" name="table">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+           <horstretch>1</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>200</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QTableWidget {
+    border: 1px solid rgba(79, 172, 254, 0.4);
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                               stop:0 rgba(15, 20, 45, 0.9), 
+                               stop:1 rgba(22, 33, 62, 0.9));
+    gridline-color: rgba(79, 172, 254, 0.15);
+    selection-background-color: rgba(79, 172, 254, 0.3);
+    selection-color: #00f2fe;
+    color: #b0b8c0;
+
+    border-radius: 0px; 
+
+}
+
+QHeaderView{
+ border-radius: 0px; 
+}
+QHeaderView::section {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                               stop:0 rgba(79, 172, 254, 0.5), 
+                               stop:1 rgba(0, 242, 254, 0.3));
+    color: #00f2fe;
+    padding: 10px;
+    border: none;
+    border-bottom: 2px solid rgba(79, 172, 254, 0.6);
+    font-weight: 600;
+    font-size: 13px;
+}
+
+QTableWidget::item {
+    padding: 8px;
+    border-bottom: 1px solid rgba(79, 172, 254, 0.1);
+}
+
+QTableWidget::item:selected {
+    background: rgba(79, 172, 254, 0.3);
+    color: #00f0ff;
+}</string>
+         </property>
+         <property name="showGrid">
+          <bool>true</bool>
+         </property>
+         <property name="gridStyle">
+          <enum>Qt::SolidLine</enum>
+         </property>
+         <property name="sortingEnabled">
+          <bool>false</bool>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+         <property name="cornerButtonEnabled">
+          <bool>true</bool>
+         </property>
+         <property name="rowCount">
+          <number>5</number>
+         </property>
+         <property name="columnCount">
+          <number>5</number>
+         </property>
+         <attribute name="verticalHeaderVisible">
+          <bool>false</bool>
+         </attribute>
+         <row/>
+         <row/>
+         <row/>
+         <row/>
+         <row/>
+         <column>
+          <property name="text">
+           <string>序号</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>文件路径</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>类别</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>置信度</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>坐标位置</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="rightWidget" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>300</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>300</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                               stop:0 rgba(22, 33, 62, 0.95), 
+                               stop:1 rgba(15, 52, 96, 0.95));
+    border-radius: 18px; 
+</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <property name="spacing">
+        <number>15</number>
+       </property>
+       <property name="leftMargin">
+        <number>15</number>
+       </property>
+       <property name="topMargin">
+        <number>20</number>
+       </property>
+       <property name="rightMargin">
+        <number>15</number>
+       </property>
+       <property name="bottomMargin">
+        <number>20</number>
+       </property>
+       <item>
+        <layout class="QHBoxLayout" name="logoLayout">
+         <item>
+          <widget class="QLabel" name="logoLabel">
+           <property name="minimumSize">
+            <size>
+             <width>100</width>
+             <height>100</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>100</width>
+             <height>100</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel {
+	
+background: white;
+    border-radius: 50px;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+}</string>
+           </property>
+           <property name="text">
+            <string>Y</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_logo">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="logoText">
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QLabel {
+    font-size: 18px;
+    font-weight: 700;
+    color: #c9d1d9;
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                               stop:0 #21262d, stop:1 #30363d);
+    border-radius: 8px;
+    padding: 6px 12px;
+}</string>
+           </property>
+           <property name="text">
+            <string>YOLO检测系统</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="statsGroup">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>200</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QGroupBox {
+    font-weight: 600;
+    border-radius: 12px;
+    margin-top: 10px;
+    padding-top: 15px;
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                               stop:0 rgba(15, 20, 35, 0.7), 
+                               stop:1 rgba(22, 33, 62, 0.7));
+    color: #4facfe;
+}
+
+QGroupBox::title {
+	
+    subcontrol-origin: margin;
+    left: 15px;
+	bottom:5px;
+	min-height: 25px;
+    padding: 0px 8px;
+    color: #4facfe;
+}</string>
+         </property>
+         <property name="title">
+          <string>📊 类别统计</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
+         <property name="checkable">
+          <bool>false</bool>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_14">
+          <item>
+           <widget class="QListView" name="catlistView">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>151</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>150</height>
+             </size>
+            </property>
+            <property name="autoFillBackground">
+             <bool>false</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QListView {
+   background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                               stop:0 #0a0e27, stop:1 #16213e);
+    border: 1px solid rgba(79, 172, 254, 0.25);
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #c9d1d9;
+}
+
+QListView::item {
+    height: 36px;
+    padding: 0 12px;
+    margin: 2px 0;
+    border: none;
+    border-radius: 6px;
+}
+
+QListView::item:hover {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                               stop:0 rgba(79, 172, 254, 0.2), 
+                               stop:1 rgba(0, 242, 254, 0.2));
+    color: #4facfe;
+}
+
+QListView::item:selected {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                               stop:0 #4facfe, stop:1 #00f2fe);
+    color: white;
+    font-weight: 600;
+}</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="filterGroup">
+         <property name="styleSheet">
+          <string notr="true">QGroupBox {
+    font-weight: 600;
+    border-radius: 12px;
+    margin-top: 10px;
+    padding-top: 15px;
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                               stop:0 rgba(15, 20, 35, 0.7), 
+                               stop:1 rgba(22, 33, 62, 0.7));
+    color: #4facfe;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 15px;
+    padding: 0 8px;
+    color: #4facfe;
+	bottom:5px;
+	min-height: 25px;
+}</string>
+         </property>
+         <property name="title">
+          <string>🔍 类别过滤:</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_6">
+          <property name="spacing">
+           <number>5</number>
+          </property>
+          <property name="leftMargin">
+           <number>10</number>
+          </property>
+          <property name="topMargin">
+           <number>10</number>
+          </property>
+          <property name="rightMargin">
+           <number>10</number>
+          </property>
+          <property name="bottomMargin">
+           <number>10</number>
+          </property>
+          <item>
+           <widget class="QComboBox" name="filter_combo">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>38</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QComboBox {
+    border: 1px solid rgba(79, 172, 254, 0.3);
+    border-radius: 8px;
+    padding: 8px 12px;
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                               stop:0 #0a0e27, stop:1 #16213e);
+    font-size: 15px;
+    color: #c9d1d9;
+    min-height: 20px;
+}
+
+QComboBox:hover {
+    border-color: #4facfe;
+}
+
+QComboBox::drop-down {
+    border: none;
+    width: 30px;
+}
+
+QComboBox::down-arrow {
+    image: none;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #4facfe;
+}
+/* 下拉列表容器 */
+QComboBox QAbstractItemView {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                               stop:0 #16213e, stop:1 #0f3460);
+    border: 2px solid rgba(79, 172, 254, 0.6);
+    border-radius: 8px;
+    selection-background-color: rgba(79, 172, 254, 0.5);
+    selection-color: white;
+    color: #e8f1ff;
+    padding: 5px;
+    outline: none;
+}
+
+/* 下拉列表项 */
+QComboBox QAbstractItemView::item {
+    height: 35px;
+    padding-left: 15px;
+    border-radius: 5px;
+	color: rgb(255, 255, 255);
+    background: transparent;
+}
+
+/* 下拉列表项悬停 */
+QComboBox QAbstractItemView::item:hover {
+    background: rgba(79, 172, 254, 0.3);
+    color: #00f2fe;
+}
+
+/* 下拉列表项选中 */
+QComboBox QAbstractItemView::item:selected {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                               stop:0 #4facfe, stop:1 #00f2fe);
+    color: white;
+    font-weight: 600;
+}</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>显示所有类别</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="classGroup">
+         <property name="styleSheet">
+          <string notr="true">QGroupBox {
+    font-weight: 600;
+    border-radius: 12px;
+    margin-top: 10px;
+    padding-top: 15px;
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                               stop:0 rgba(15, 20, 35, 0.7), 
+                               stop:1 rgba(22, 33, 62, 0.7));
+    color: #4facfe;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 15px;
+    padding: 0 8px;
+    color: #4facfe;
+	bottom:5px;
+	min-height: 25px;
+}</string>
+         </property>
+         <property name="title">
+          <string>🔲 检测类别:</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_7">
+          <property name="spacing">
+           <number>5</number>
+          </property>
+          <property name="leftMargin">
+           <number>10</number>
+          </property>
+          <property name="topMargin">
+           <number>10</number>
+          </property>
+          <property name="rightMargin">
+           <number>10</number>
+          </property>
+          <property name="bottomMargin">
+           <number>10</number>
+          </property>
+          <item>
+           <widget class="QPushButton" name="category_value">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 #fa709a, stop:1 #fee140);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 8px 16px;
+}
+QPushButton:hover {
+}</string>
+            </property>
+            <property name="text">
+             <string>未选择</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="confGroup">
+         <property name="styleSheet">
+          <string notr="true">QGroupBox {
+    font-weight: 600;
+    border-radius: 12px;
+    margin-top: 10px;
+    padding-top: 15px;
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                               stop:0 rgba(15, 20, 35, 0.7), 
+                               stop:1 rgba(22, 33, 62, 0.7));
+    color: #4facfe;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 15px;
+    padding: 0 8px;
+    color: #4facfe;
+	bottom:5px;
+	min-height: 25px;
+}</string>
+         </property>
+         <property name="title">
+          <string>📊 置信度:</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_8">
+          <property name="spacing">
+           <number>5</number>
+          </property>
+          <property name="leftMargin">
+           <number>10</number>
+          </property>
+          <property name="topMargin">
+           <number>10</number>
+          </property>
+          <property name="rightMargin">
+           <number>10</number>
+          </property>
+          <property name="bottomMargin">
+           <number>10</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="confidence_value">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLabel {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                               stop:0 #21262d, stop:1 #30363d);
+    border: 2px solid #4facfe;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #4facfe;
+}</string>
+            </property>
+            <property name="text">
+             <string>0.00</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="posGroup">
+         <property name="styleSheet">
+          <string notr="true">QGroupBox {
+    font-weight: 600;
+    border-radius: 12px;
+    margin-top: 10px;
+    padding-top: 15px;
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                               stop:0 rgba(15, 20, 35, 0.7), 
+                               stop:1 rgba(22, 33, 62, 0.7));
+    color: #4facfe;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 15px;
+    padding: 0 8px;
+    color: #4facfe;
+	bottom:5px;
+	min-height: 25px;
+}</string>
+         </property>
+         <property name="title">
+          <string>📍 坐标位置:</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_9">
+          <property name="spacing">
+           <number>5</number>
+          </property>
+          <property name="leftMargin">
+           <number>10</number>
+          </property>
+          <property name="topMargin">
+           <number>10</number>
+          </property>
+          <property name="rightMargin">
+           <number>10</number>
+          </property>
+          <property name="bottomMargin">
+           <number>10</number>
+          </property>
+          <item>
+           <layout class="QGridLayout" name="posGrid">
+            <property name="spacing">
+             <number>8</number>
+            </property>
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_x_text">
+              <property name="styleSheet">
+               <string notr="true">color: #c9d1d9; font-weight: 600;
+text-align: center;
+qproperty-alignment: 'AlignCenter';</string>
+              </property>
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;X&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLabel" name="xmin_value">
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                               stop:0 #21262d, stop:1 #2a3441);
+    border: 1px solid rgba(79, 172, 254, 0.4);
+    border-radius: 6px;
+    padding: 4px 6px;
+    color: #4facfe;
+    font-weight: 600;
+    font-size: 14px;
+    min-width: 35px;
+}</string>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QLabel" name="label_y_text">
+              <property name="styleSheet">
+               <string notr="true">color: #c9d1d9; font-weight: 600;
+text-align: center;
+qproperty-alignment: 'AlignCenter';</string>
+              </property>
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Y&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="3">
+             <widget class="QLabel" name="ymin_value">
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                               stop:0 #21262d, stop:1 #2a3441);
+    border: 1px solid rgba(79, 172, 254, 0.4);
+    border-radius: 6px;
+    padding: 4px 6px;
+    color: #4facfe;
+    font-weight: 600;
+    font-size: 14px;
+    min-width: 35px;
+}</string>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_z1_text">
+              <property name="styleSheet">
+               <string notr="true">color: #c9d1d9; font-weight: 600;
+text-align: center;
+qproperty-alignment: 'AlignCenter';</string>
+              </property>
+              <property name="text">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;X&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QLabel" name="xmax_value">
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                               stop:0 #21262d, stop:1 #2a3441);
+    border: 1px solid rgba(79, 172, 254, 0.4);
+    border-radius: 6px;
+    padding: 4px 6px;
+    color: #4facfe;
+    font-weight: 600;
+    font-size: 14px;
+    min-width: 35px;
+}</string>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <widget class="QLabel" name="label_z2_text">
+              <property name="styleSheet">
+               <string notr="true">color: #c9d1d9; font-weight: 600;
+text-align: center;
+qproperty-alignment: 'AlignCenter';</string>
+              </property>
+              <property name="text">
+               <string>Y</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="3">
+             <widget class="QLabel" name="ymax_value">
+              <property name="styleSheet">
+               <string notr="true">QLabel {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                               stop:0 #21262d, stop:1 #2a3441);
+    border: 1px solid rgba(79, 172, 254, 0.4);
+    border-radius: 6px;
+    padding: 4px 6px;
+    color: #4facfe;
+    font-weight: 600;
+    font-size: 14px;
+    min-width: 35px;
+}</string>
+              </property>
+              <property name="text">
+               <string>0</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QWidget" name="userWidget" native="true">
+      <property name="minimumSize">
+       <size>
+        <width>300</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>300</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                               stop:0 rgba(22, 33, 62, 0.95), 
+                               stop:1 rgba(15, 52, 96, 0.95));
+    border-radius: 18px; 
+</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_11">
+       <property name="spacing">
+        <number>15</number>
+       </property>
+       <property name="leftMargin">
+        <number>15</number>
+       </property>
+       <property name="topMargin">
+        <number>20</number>
+       </property>
+       <property name="rightMargin">
+        <number>15</number>
+       </property>
+       <property name="bottomMargin">
+        <number>20</number>
+       </property>
+       <item>
+        <widget class="QWidget" name="avatarWidget" native="true">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>200</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>200</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">QWidget{
+font-weight: 600;
+    border-radius: 12px;
+    margin-top: 10px;
+    padding-top: 15px;
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                               stop:0 rgba(15, 20, 35, 0.7), 
+                               stop:1 rgba(22, 33, 62, 0.7));
+    color: #4facfe;
+}</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="avatar_label">
+            <property name="minimumSize">
+             <size>
+              <width>180</width>
+              <height>180</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>180</width>
+              <height>180</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLabel {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                               stop:0 rgba(10, 14, 39, 0.8), 
+                               stop:1 rgba(22, 33, 62, 0.8));
+    qproperty-alignment: 'AlignHCenter | AlignVCenter';
+    border-radius: 0px; 
+}</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget" native="true">
+         <property name="styleSheet">
+          <string notr="true">background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                               stop:0 rgba(10, 14, 39, 0.8), 
+                               stop:1 rgba(22, 33, 62, 0.8));
+    border-radius: 12px;</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0">
+          <property name="spacing">
+           <number>8</number>
+          </property>
+          <property name="leftMargin">
+           <number>8</number>
+          </property>
+          <property name="topMargin">
+           <number>8</number>
+          </property>
+          <property name="rightMargin">
+           <number>8</number>
+          </property>
+          <property name="bottomMargin">
+           <number>8</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="username_title">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>75</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font-size: 12px; 
+    color: #ffffff; 
+    font-weight: 500;
+    padding: 6px 12px;</string>
+            </property>
+            <property name="text">
+             <string>用户名:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="username_value">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>30</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">font-size: 14px; 
+    color: #ffffff; 
+color: rgb(221, 221, 221);
+    font-weight: 500;
+    padding: 6px 12px;
+text-align: center;
+qproperty-alignment: 'AlignCenter';</string>
+            </property>
+            <property name="text">
+             <string>未知用户</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="modify_btn">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 #667eea, stop:1 #764ba2);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-weight: 600;
+}
+
+QPushButton:hover {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 #764ba2, stop:1 #667eea);
+}</string>
+         </property>
+         <property name="text">
+          <string>修改用户信息</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="logout_btn">
+         <property name="styleSheet">
+          <string notr="true">QPushButton {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 #667eea, stop:1 #764ba2);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-weight: 600;
+}
+
+QPushButton:hover {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                               stop:0 #764ba2, stop:1 #667eea);
+}</string>
+         </property>
+         <property name="text">
+          <string>注销用户</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer_6">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>361</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QWebEngineView</class>
+   <extends>QWidget</extends>
+   <header>qwebengineview.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>btnImage</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>open_image_file()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>303</x>
+     <y>228</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>262</x>
+     <y>183</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnVideo</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>open_video_file()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>326</x>
+     <y>293</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>262</x>
+     <y>252</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnFolder</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>open_folder()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>319</x>
+     <y>358</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>265</x>
+     <y>317</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>drawer_buttons</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>open_camera()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>297</x>
+     <y>423</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>267</x>
+     <y>377</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnModel</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>select_model_file()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>313</x>
+     <y>442</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>266</x>
+     <y>430</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>conf_slider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>confValueChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>423</x>
+     <y>62</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>469</x>
+     <y>5</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>iou_slider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>iouValueChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>621</x>
+     <y>63</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>651</x>
+     <y>6</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>filter_combo</sender>
+   <signal>currentIndexChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_filter_changed(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1095</x>
+     <y>374</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>674</x>
+     <y>366</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toggle_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>toggle_collapse()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>325</x>
+     <y>62</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>263</x>
+     <y>53</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toggle_btn_2</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>toggle_collapse()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>53</x>
+     <y>51</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>101</x>
+     <y>57</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnImage_2</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>open_image_file()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>47</x>
+     <y>184</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>99</x>
+     <y>137</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnVideo_2</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>open_video_file()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>74</x>
+     <y>293</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>97</x>
+     <y>191</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnFolder_2</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>open_folder()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>72</x>
+     <y>358</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>97</x>
+     <y>258</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>drawer_buttons_2</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>open_camera()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>74</x>
+     <y>423</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>97</x>
+     <y>331</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnModel_2</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>select_model_file()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>70</x>
+     <y>488</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>96</x>
+     <y>397</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnUser</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>show_user_info()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>268</x>
+     <y>120</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>358</x>
+     <y>118</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btnUser2</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>show_user_info()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>64</x>
+     <y>114</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>97</x>
+     <y>105</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>modify_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>open_modify_user_dialog()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1415</x>
+     <y>345</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1456</x>
+     <y>373</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>logout_btn</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>prompt_logout()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1415</x>
+     <y>400</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1436</x>
+     <y>425</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>table</sender>
+   <signal>itemSelectionChanged()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_detection_selected()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>575</x>
+     <y>668</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>671</x>
+     <y>754</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>open_image_file()</slot>
+  <slot>open_video_file()</slot>
+  <slot>open_folder()</slot>
+  <slot>open_camera()</slot>
+  <slot>select_model_file()</slot>
+  <slot>confValueChanged(int)</slot>
+  <slot>iouValueChanged(int)</slot>
+  <slot>on_filter_changed(QString)</slot>
+  <slot>on_detection_selected()</slot>
+  <slot>toggle_collapse()</slot>
+  <slot>show_user_info()</slot>
+  <slot>open_modify_user_dialog()</slot>
+  <slot>prompt_logout()</slot>
+ </slots>
+</ui>

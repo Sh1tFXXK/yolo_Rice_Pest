@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOLO图像检测识别</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        body {
+            font-family: 'Arial', 'Microsoft YaHei', sans-serif;
+        }
+        
+        .container {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* 动态网格背景 */
+        .grid-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(100, 200, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(100, 200, 255, 0.1) 1px, transparent 1px);
+            background-size: 3vw 3vw;
+            animation: gridMove 20s linear infinite;
+        }
+        
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(3vw, 3vw); }
+        }
+        
+        /* 光晕效果 */
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(5vw);
+            opacity: 0.3;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        .orb1 {
+            width: 30vw;
+            height: 30vw;
+            background: radial-gradient(circle, #00d4ff, transparent);
+            top: -10vh;
+            left: -10vw;
+        }
+        
+        .orb2 {
+            width: 25vw;
+            height: 25vw;
+            background: radial-gradient(circle, #7b2ff7, transparent);
+            bottom: -10vh;
+            right: -10vw;
+            animation-delay: -4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(2vw, -2vh) scale(1.1); }
+        }
+        
+        /* 主内容区 */
+        .content {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            height: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 2.5vw;
+            font-weight: 700;
+            color: #00d4ff;
+            margin-bottom: 2vh;
+            letter-spacing: 0.3vw;
+            text-transform: uppercase;
+        }
+        
+        .title {
+            font-size: 4vw;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 1.5vh;
+            line-height: 1.2;
+            text-shadow: 0 0 2vw rgba(0, 212, 255, 0.5);
+        }
+        
+        .subtitle {
+            font-size: 1.5vw;
+            color: #b8c5d6;
+            margin-bottom: 3vh;
+            line-height: 1.6;
+        }
+        
+        /* 中心神经网络图标 */
+        .neural-icon {
+            width: 12vw;
+            height: 12vw;
+            margin: 2vh auto;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.2), transparent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: rotate 20s linear infinite;
+            position: relative;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .neural-icon::before {
+            content: 'AI';
+            font-size: 5vw;
+            font-weight: 900;
+            color: #00d4ff;
+            text-shadow: 0 0 1vw rgba(0, 212, 255, 0.8);
+        }
+        
+        /* 检测框动画 - 围绕中心 */
+        .detection-boxes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+        
+        .detection-box {
+            position: absolute;
+            border: 0.2vw solid #00d4ff;
+            border-radius: 0.5vw;
+            background: rgba(0, 212, 255, 0.05);
+            box-shadow: 0 0 1vw rgba(0, 212, 255, 0.4), inset 0 0 1vw rgba(0, 212, 255, 0.1);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .box1 {
+            width: 20vw;
+            height: 15vh;
+            top: 10vh;
+            left: 5vw;
+        }
+        
+        .box2 {
+            width: 15vw;
+            height: 12vh;
+            bottom: 15vh;
+            right: 8vw;
+            animation-delay: -1s;
+            border-color: #7b2ff7;
+            box-shadow: 0 0 1vw rgba(123, 47, 247, 0.4), inset 0 0 1vw rgba(123, 47, 247, 0.1);
+        }
+        
+        .box3 {
+            width: 12vw;
+            height: 10vh;
+            top: 35vh;
+            right: 15vw;
+            animation-delay: -0.5s;
+            border-color: #00ff88;
+            box-shadow: 0 0 1vw rgba(0, 255, 136, 0.4), inset 0 0 1vw rgba(0, 255, 136, 0.1);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { 
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% { 
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+        }
+        
+        /* 标签 */
+        .label {
+            position: absolute;
+            top: -0.8vh;
+            left: -0.1vw;
+            background: #00d4ff;
+            color: #0f0c29;
+            padding: 0.3vh 0.8vw;
+            font-size: 1vw;
+            font-weight: 700;
+            border-radius: 0.3vw;
+            box-shadow: 0 0.3vh 0.8vw rgba(0, 212, 255, 0.5);
+            white-space: nowrap;
+        }
+        
+        .box2 .label {
+            background: #7b2ff7;
+        }
+        
+        .box3 .label {
+            background: #00ff88;
+        }
+        
+        /* 特性标签 */
+        .features {
+            display: flex;
+            gap: 10vw;
+            margin-top: 2vh;
+            justify-content: center;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 4vw;
+        }
+        
+        .feature-icon {
+            width: 3vw;
+            height: 3vw;
+            background: linear-gradient(135deg, #00d4ff, #7b2ff7);
+            border-radius: 0.6vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5vw;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 0.5vh 1vw rgba(0, 212, 255, 0.3);
+        }
+        
+        .feature-text {
+            font-size: 1.3vw;
+            color: #ffffff;
+            font-weight: 600;
+        }
+        
+        /* 扫描线 */
+        .scan-line {
+            position: absolute;
+            width: 100%;
+            height: 0.2vh;
+            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+            box-shadow: 0 0 1vh #00d4ff;
+            animation: scan 3s linear infinite;
+        }
+        
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 背景效果 -->
+        <div class="grid-bg"></div>
+        <div class="glow-orb orb1"></div>
+        <div class="glow-orb orb2"></div>
+        
+        <!-- 检测框 -->
+        <div class="detection-boxes">
+            <div class="scan-line"></div>
+            
+            <div class="detection-box box1">
+                <div class="label">Person 98%</div>
+            </div>
+            
+            <div class="detection-box box2">
+                <div class="label">Car 95%</div>
+            </div>
+            
+            <div class="detection-box box3">
+                <div class="label">Dog 92%</div>
+            </div>
+        </div>
+        
+        <!-- 主内容 -->
+        <div class="content">
+            <div class="logo">YOLO</div>
+            <h1 class="title">实时目标检测</h1>
+            <div class="neural-icon"></div>
+            <p class="subtitle">智能图像识别系统<br/>快速 · 精准 · 高效</p>
+            
+            <div class="features">
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-text">毫秒级</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🎯</div>
+                    <div class="feature-text">高精度</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
