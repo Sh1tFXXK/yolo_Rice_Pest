@@ -24,3 +24,4 @@ __pycache__/
 "*.dll" 
 "venv/" 
 ".venv/" 
+"*.mp4" 
