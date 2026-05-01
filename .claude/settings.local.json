@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Python310/python.exe -c \":*)",
+      "Bash(Python310/python.exe -m pip install python-docx -q)",
+      "Bash(Python310/python.exe -c \"import docx; print\\(''ok''\\)\")",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:arxiv.org)",
+      "Bash(Python310/python.exe -m pip install pymupdf -q)",
+      "Bash(Python310/python.exe -c \"import fitz; print\\(''fitz ok''\\)\")",
+      "Bash(Python310/python.exe 2)",
+      "Bash(1:*)",
+      "Bash(Python310/python.exe -m pip install opencv-python -q)",
+      "Bash(Python310/python.exe -m pip install pypiwin32 win32com -q)",
+      "Bash(Python310/python.exe -m pip install pywin32 -q)"
+    ]
+  }
+}

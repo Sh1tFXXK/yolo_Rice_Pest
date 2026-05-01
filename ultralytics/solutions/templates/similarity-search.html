@@ -13,9 +13,10 @@
     />
     <style>
       body {
-        background: linear-gradient(135deg, #f0f4ff, #f9fbff);
+        /* 农业主题：田野与天空的柔和配色，去除蓝紫色 */
+        background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
         font-family: "Inter", sans-serif;
-        color: #111e68;
+        color: #2e7d32;
         padding: 2rem;
         margin: 0;
         min-height: 100vh;
@@ -26,6 +27,7 @@
         margin-bottom: 2rem;
         font-size: 2.5rem;
         font-weight: 600;
+        color: #33691e;
       }
 
       form {
@@ -42,18 +44,19 @@
         padding: 0.75rem 1rem;
         font-size: 1rem;
         border-radius: 10px;
-        border: 1px solid #ccc;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-        transition: box-shadow 0.3s ease;
+        border: 1px solid #c5e1a5;
+        box-shadow: 0 2px 6px rgba(76, 175, 80, 0.12);
+        transition: box-shadow 0.3s ease, border-color 0.3s ease;
       }
-
+      
       input[type="text"]:focus {
         outline: none;
-        box-shadow: 0 0 0 3px rgba(17, 30, 104, 0.2);
+        border-color: #7cb342;
+        box-shadow: 0 0 0 3px rgba(124, 179, 66, 0.25);
       }
 
       button {
-        background-color: #111e68;
+        background-color: #7cb342; /* 农业主题的嫩绿色按钮 */
         color: white;
         font-weight: 600;
         font-size: 1rem;
@@ -63,12 +66,14 @@
         cursor: pointer;
         transition:
           background-color 0.3s ease,
-          transform 0.2s ease;
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
       }
-
+      
       button:hover {
-        background-color: #1f2e9f;
+        background-color: #689f38;
         transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(104, 159, 56, 0.35);
       }
 
       .grid {
@@ -80,18 +85,19 @@
       }
 
       .card {
-        background: white;
+        background: #ffffff;
         border-radius: 16px;
         overflow: hidden;
-        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 6px 14px rgba(56, 142, 60, 0.12);
         transition:
           transform 0.3s ease,
           box-shadow 0.3s ease;
+        border: 1px solid #e0f2f1;
       }
-
+      
       .card:hover {
         transform: translateY(-6px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 10px 20px rgba(76, 175, 80, 0.22);
       }
 
       .card img {
